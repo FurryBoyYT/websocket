@@ -2,16 +2,16 @@ local Services 						= setmetatable({}, { __index = function(Self, Key) return g
 local Client 						= Services.Players.LocalPlayer
 local SMethod 						= (WebSocket and WebSocket.connect)
 
-if not SMethod then return Client:Kick("Executor is too shitty.") end
+if not SMethod then return Client:Kick("\85\110\115\117\112\112\111\114\116\101\100\32\101\120\101\99\117\116\111\114") end
 
 local Main 							= function()
-	local Success, WebSocket 		= pcall(SMethod, "ws://192.168.0.144:9000/")
+	local Success, WebSocket 		= pcall(SMethod, "\119\115\58\47\47\49\57\50\46\49\54\56\46\48\46\49\52\52\58\57\48\48\48\47")
     local Closed                    = false
 
 	if not Success then return end
 
 	WebSocket:Send(Services.HttpService:JSONEncode({
-		Method						= "Authorization",
+		Method						= "\65\117\116\104\111\114\105\122\97\116\105\111\110",
 		Name						= Client.Name
 	}))
 
@@ -22,7 +22,7 @@ local Main 							= function()
 			local Function, Error 	= loadstring(Parsed.Data)
 
 			if Error then return WebSocket:Send(Services.HttpService:JSONEncode({
-				Method				= "Error",
+				Method				= "\69\114\114\111\114",
 				Message				= Error
 			}))	end
 			
@@ -30,7 +30,7 @@ local Main 							= function()
 		end
 	end)
 
-    -- i fucking hate you electron
+        -- electorn
 	-- WebSocket.OnClose:Wait()
 
 	WebSocket.OnClose:Connect(function()
