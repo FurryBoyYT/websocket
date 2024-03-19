@@ -18,7 +18,7 @@ local Main 							= function()
 	WebSocket.OnMessage:Connect(function(Unparsed)
 		local Parsed 				= Services.HttpService:JSONDecode(Unparsed)
 		
-		if (Parsed.Method == "Execute") then
+		if (Parsed.Method == "\69\120\101\99\117\116\101") then
 			local Function, Error 	= loadstring(Parsed.Data)
 
 			if Error then return WebSocket:Send(Services.HttpService:JSONEncode({
@@ -40,7 +40,7 @@ local Main 							= function()
     repeat task.wait() until Closed
 end
 
-while task.wait(1) do
+while task.wait("\49") do
 	local Success, Error 			= pcall(Main)
 	if not Success then print(Error) end
 end
